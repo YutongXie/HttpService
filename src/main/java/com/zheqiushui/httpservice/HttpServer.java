@@ -66,8 +66,6 @@ public class HttpServer {
 
             server.start();
             server.join();
-
-
         } catch (Exception ex) {
             logger.error("failed to startup server.", ex);
         }
@@ -84,7 +82,7 @@ public class HttpServer {
 
         ServerConnector httpConnector = new ServerConnector(server, new HttpConnectionFactory(configuration));
         httpConnector.setPort(getPort());
-        httpConnector.setIdleTimeout(300000);
+        httpConnector.setIdleTimeout(30000);
 
         SslContextFactory factory = new SslContextFactory.Server();
         setupKeyStore(factory);
@@ -101,7 +99,7 @@ public class HttpServer {
                 new HttpConnectionFactory(configuration));
 
         httpsConnecter.setPort(getTlsPort());
-        httpsConnecter.setIdleTimeout(500000);
+        httpsConnecter.setIdleTimeout(50000);
         server.setConnectors(new Connector[]{httpsConnecter, httpConnector});
     }
 
@@ -168,7 +166,11 @@ public class HttpServer {
         gzipHandler.addIncludedMethods(Constants.COMPRESSION_GZIP_INCLUDED_METHODS);
         gzipHandler.addIncludedMimeTypes(Constants.COMPRESSION_GZIP_INCLUDED_MIME_TYPES);
         gzipHandler.addIncludedPaths(Constants.COMPRESSION_GZIP_INCLUDED_PATH);
-
+        // support 1-9,
+        // 1: fastest speed, but lower compression ratio
+        // 9: lowest compression speed, but highest compression ratio
+        // default is 6
+        gzipHandler.setCompressionLevel(4);
         gzipHandler.setHandler(handler);
         return gzipHandler;
     }
@@ -212,7 +214,7 @@ public class HttpServer {
         Constraint constraint = new Constraint();
         constraint.setName(Constraint.__BASIC_AUTH);
         constraint.setAuthenticate(true);
-
+        // Only allow users with that roles can access
         constraint.setRoles(new String[]{"user", "admin"});
 
         ConstraintMapping mapping = new ConstraintMapping();
