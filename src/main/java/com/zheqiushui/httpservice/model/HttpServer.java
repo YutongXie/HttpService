@@ -10,10 +10,9 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Qiushui.Zhe
  * @date 2021/12/12 19:35
  */
-@Data
 public class HttpServer extends Server {
-
     private String dataCenter;
+
     public HttpServer(String host, int port) {
         super(host, port);
     }
@@ -28,5 +27,13 @@ public class HttpServer extends Server {
 
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public String getDataCenter() {
+        return dataCenter;
+    }
+
+    public void setDataCenter(String dataCenter) {
+        this.dataCenter = dataCenter;
     }
 }
