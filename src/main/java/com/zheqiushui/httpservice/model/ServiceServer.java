@@ -1,5 +1,4 @@
 package com.zheqiushui.httpservice.model;
-//import org.netflix.loadbalancer.Server;
 
 import com.netflix.loadbalancer.Server;
 import lombok.Data;
@@ -10,18 +9,18 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Qiushui.Zhe
  * @date 2021/12/12 19:35
  */
-public class HttpServer extends Server {
+public class ServiceServer extends Server {
     private String dataCenter;
 
-    public HttpServer(String host, int port) {
+    public ServiceServer(String host, int port) {
         super(host, port);
     }
 
-    public HttpServer(String scheme, String host, int port) {
+    public ServiceServer(String scheme, String host, int port) {
         super(scheme, host, port);
     }
 
-    public HttpServer(String id) {
+    public ServiceServer(String id) {
         super(id);
     }
 

@@ -30,12 +30,15 @@ public class Constants {
     public static final int REQUEST_HEADER_SIZE_LIMIT = 8192;
 
     public static final String[] COMPRESSION_GZIP_INCLUDED_METHODS = {"GET", "PUT"};
-    public static final String[] COMPRESSION_GZIP_INCLUDED_MIME_TYPES = {"text/html","text/xml", "applicatoin/json"};
+    public static final String[] COMPRESSION_GZIP_INCLUDED_MIME_TYPES = {"text/html", "text/xml", "applicatoin/json"};
     public static final String[] COMPRESSION_GZIP_INCLUDED_PATH = {"/*"};
 
     public static final String[] SSL_EXCLUDE_PROTOCOLS = {"SSLv3"};
     public static final String[] SSL_EXCLUDE_CIPHERSUITES = {};
 
     public static final String HTTP_PROTOCOL_1_1 = HttpVersion.HTTP_1_1.asString();
+
+    public static final String DATA_CENTER_INDICATOR_PRIMARY = "p";
+    public static final String DATA_CENTER_INDICATOR_SECONDARY = "s";
 
 }
