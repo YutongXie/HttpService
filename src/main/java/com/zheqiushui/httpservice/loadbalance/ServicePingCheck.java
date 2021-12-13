@@ -36,7 +36,7 @@ public class ServicePingCheck extends AbstractLoadBalancerPing {
     public boolean isAlive(Server server) {
         String endPoint = getProtocol(server) + "://" + server.getId() + Constants.REQUEST_PATH_HEALTH_CHECK;
         try {
-            ContentResponse response = httpClient.doHealthCheck(endPoint); // TODO: do health check
+            ContentResponse response = httpClient.doHealthCheck(endPoint);
             if (response.getStatus() == HttpStatus.OK_200) {
                 return true;
             }
